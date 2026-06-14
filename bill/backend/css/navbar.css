@@ -1,0 +1,216 @@
+/* Navbar Styles */
+.navbar {
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 64px;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+}
+
+/* Logo Styles */
+.navbar .logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .logo a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #ff6b35;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.navbar .logo i {
+    font-size: 1.6rem;
+}
+
+/* Navigation Links */
+.navbar .nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 8px;
+    flex: 1;
+    justify-content: center;
+}
+
+.navbar .nav-links li a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #4a5568;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.navbar .nav-links li a i {
+    font-size: 1.1rem;
+}
+
+.navbar .nav-links li a:hover {
+    color: #ff6b35;
+    background: rgba(255, 107, 53, 0.08);
+}
+
+.navbar .nav-links li a.active {
+    color: #ff6b35;
+    background: rgba(255, 107, 53, 0.12);
+}
+
+/* User Menu */
+.navbar .user-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar .notifications {
+    position: relative;
+    padding: 8px;
+    cursor: pointer;
+    color: #4a5568;
+    transition: all 0.2s ease;
+}
+
+.navbar .notifications:hover {
+    color: #ff6b35;
+}
+
+.navbar .notifications .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #ff6b35;
+    color: white;
+    font-size: 0.7rem;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+/* User Profile */
+.navbar .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.navbar .user-profile:hover {
+    background: rgba(74, 85, 104, 0.08);
+}
+
+.navbar .user-profile img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.navbar .user-profile .user-info {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .navbar .user-profile .user-info {
+        display: block;
+    }
+    
+    .navbar .user-profile .user-info span {
+        display: block;
+        line-height: 1.2;
+    }
+    
+    .navbar .user-profile .user-info .name {
+        font-weight: 500;
+        color: #2d3436;
+    }
+    
+    .navbar .user-profile .user-info .role {
+        font-size: 0.8rem;
+        color: #636e72;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .nav-container {
+        padding: 0 16px;
+    }
+
+    .nav-links {
+        gap: 4px;
+    }
+
+    .nav-links li a {
+        padding: 8px 12px;
+    }
+
+    .profile-dropdown .username {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 16px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-links li a {
+        width: 100%;
+        padding: 12px 16px;
+    }
+}
+
+/* Add spacing for fixed navbar */
+body {
+    padding-top: 64px;
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity - SplitWise</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/activity.css">
+    <script src="js/expense.js" defer></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="dashboard.html">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>SplitWise</span>
+                </a>
+            </div>
+
+            <!-- Main Navigation -->
+            <ul class="nav-links">
+                <li><a href="dashboard.html">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a></li>
+                <li><a href="groups.html">
+                    <i class="fas fa-users"></i>
+                    <span>Groups</span>
+                </a></li>
+                <li><a href="#" id="addExpenseBtn">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Add Expense</span>
+                </a></li>
+                <li><a href="activity.html" class="active">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Activity</span>
+                </a></li>
+                <li><a href="settle.html">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Settle Up</span>
+                </a></li>
+            </ul>
+
+            <!-- User Menu -->
+            <div class="user-menu">
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">2</span>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Activity Header with Summary -->
+        <div class="activity-header">
+            <h1><i class="fas fa-wallet"></i> Activity & Balances</h1>
+            <div class="balance-summary">
+                <div class="total-balance">
+                    <h3><i class="fas fa-balance-scale"></i> Total Balance</h3>
+                    <span class="amount">₹350.75</span>
+                </div>
+                <div class="balance-details">
+                    <div class="you-owe">
+                        <h4><i class="fas fa-arrow-circle-up"></i> You Owe</h4>
+                        <span class="amount negative">-₹120.00</span>
+                    </div>
+                    <div class="you-are-owed">
+                        <h4><i class="fas fa-arrow-circle-down"></i> You are Owed</h4>
+                        <span class="amount positive">₹470.75</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity Content -->
+        <div class="activity-content">
+            <!-- Add Expense Form -->
+            <div class="expense-form-container">
+                <form id="expenseForm" class="expense-form">
+                    <div class="form-group">
+                        <label for="expenseAmount">Amount (₹)</label>
+                        <input type="number" id="expenseAmount" required min="0.01" step="0.01" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseDescription">Description</label>
+                        <input type="text" id="expenseDescription" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="paymentMode">Payment Mode</label>
+                        <select id="paymentMode" required class="form-control">
+                            <option value="">Select Payment Mode</option>
+                            <option value="cash">Cash</option>
+                            <option value="card">Credit/Debit Card</option>
+                            <option value="upi">UPI</option>
+                            <option value="netbanking">Net Banking</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Expense</button>
+                </form>
+            </div>
+            
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/activity.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UPI Payment</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .upi-container {
+            max-width: 500px;
+            margin: 80px auto;
+            padding: 30px;
+            border: 1px solid #ccc;
+            border-radius: 16px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        .upi-container h2 {
+            margin-bottom: 20px;
+        }
+        .upi-methods {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+        }
+        .upi-methods label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        .upi-methods img {
+            width: 60px;
+            height: 60px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin: 12px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            background-color: #f75f00;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="upi-container">
+        <h2>Pay via UPI</h2>
+        <label for="upiId">Enter your UPI ID</label>
+        <input type="text" id="upiId" class="form-control" placeholder="example@upi">
+
+        <h3>Select UPI App</h3>
+        <div class="upi-methods">
+            <label>
+                <input type="radio" name="upiApp" value="PhonePe">
+                <img src="images/PhonePe-logo.png" alt="PhonePe">
+                PhonePe
+            </label>
+            <label>
+                <input type="radio" name="upiApp" value="GPay">
+                <img src="images/Gpay.png" alt="GPay">
+                Google Pay
+            </label>
+            <label>
+                <input type="radio" name="upiApp" value="Paytm">
+                <img src="images/paytm-icon.png" alt="Paytm">
+                Paytm
+            </label>
+        </div>
+
+        <button class="btn-primary" onclick="submitPayment()">Complete Payment</button>
+    </div>
+
+    <script>
+        function submitPayment() {
+            const upiId = document.getElementById('upiId').value;
+            const app = document.querySelector('input[name="upiApp"]:checked');
+
+            if (!upiId || !app) {
+                alert("Please enter UPI ID and select a UPI App.");
+                return;
+            }
+
+            alert(`Redirecting to ${app.value} with UPI ID: ${upiId}`);
+            // Here you can integrate with real UPI via Razorpay/Paytm etc
+        }
+    </script>
+</body>
+</html>

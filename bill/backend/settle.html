@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settle Payments | Bill Splitting App</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/settle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-header">
+                    <img src="images/splitlogo.jpg" alt="Logo" class="logo">
+                    <h1>Split<span>Wise</span></h1>
+                </div>
+                <ul class="nav-links">
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="groups.html">
+                            <i class="fas fa-users"></i>
+                            <span>Groups</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="settle.html">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Settle Up</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="activity.html">
+                            <i class="fas fa-receipt"></i>
+                            <span>Activity</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+        </nav>
+
+        <div class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <h1>Settle Payments</h1>
+                <div class="top-bar-right">
+                    <button class="btn btn-primary" id="settleAllBtn">
+                        <i class="fas fa-money-bill-wave"></i>
+                        Settle All
+                    </button>
+                </div>
+            </div>
+
+            <!-- Overview Cards -->
+            <div class="overview-section">
+                <div class="overview-cards">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>You Owe</h3>
+                            <p class="amount negative">₹150.00</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon green">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>You're Owed</h3>
+                            <p class="amount positive">₹75.00</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon purple">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Total Balance</h3>
+                            <p class="amount negative">-₹75.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs Section -->
+            <div class="tabs-section">
+                <div class="tabs">
+                    <button class="tab active" data-tab="balances">
+                        <i class="fas fa-wallet"></i>
+                        Outstanding Balances
+                    </button>
+                    <button class="tab" data-tab="history">
+                        <i class="fas fa-history"></i>
+                        Transaction History
+                    </button>
+                </div>
+
+                <!-- Filter Bar -->
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <select class="filter-select">
+                            <option value="all">All Balances</option>
+                            <option value="owed-by-me">Owed by Me</option>
+                            <option value="owed-to-me">Owed to Me</option>
+                        </select>
+                        <select class="filter-select">
+                            <option value="all">All Groups</option>
+                            <option value="personal">Personal</option>
+                            <option value="roommates">Roommates</option>
+                            <option value="trip">Trip</option>
+                            <option value="trip">Others</option>
+                        </select>
+                    </div>
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search transactions...">
+                    </div>
+                </div>
+
+                <!-- Balances Tab Content -->
+                <div class="tab-content active" id="balances">
+                    <div class="balances-list">
+                        <!-- Balance Card -->
+                        <div class="balance-card you-owe">
+                            <div class="balance-header">
+                                <div class="user-info">
+                                    <img src="https://via.placeholder.com/40" alt="Sarah">
+                                    <div class="text">
+                                        <h3>You owe Sarah</h3>
+                                        <p>From "Weekend Trip"</p>
+                                    </div>
+                                </div>
+                                <div class="amount negative">
+                                    <span>₹45.00</span>
+                                </div>
+                            </div>
+                            <div class="balance-details">
+                                <div class="expense-info">
+                                    <p><i class="fas fa-receipt"></i> Dinner at Joe's Cafe</p>
+                                    <p><i class="fas fa-calendar"></i> Due by Dec 10, 2023</p>
+                                </div>
+                                <div class="balance-actions">
+                                    <button class="btn btn-primary settle-btn">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        Pay Now
+                                    </button>
+                                    <button class="btn btn-outline mark-paid-btn">
+                                        <i class="fas fa-check"></i>
+                                        Mark as Paid
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 60%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Balance Card -->
+                        <div class="balance-card you-are-owed">
+                            <div class="balance-header">
+                                <div class="user-info">
+                                    <img src="https://via.placeholder.com/40" alt="Mike">
+                                    <div class="text">
+                                        <h3>Mike owes you</h3>
+                                        <p>From "Roommates"</p>
+                                    </div>
+                                </div>
+                                <div class="amount positive">
+                                    <span>₹30.00</span>
+                                </div>
+                            </div>
+                            <div class="balance-details">
+                                <div class="expense-info">
+                                    <p><i class="fas fa-receipt"></i> Groceries</p>
+                                    <p><i class="fas fa-calendar"></i> Due by Dec 15, 2023</p>
+                                </div>
+                                <div class="balance-actions">
+                                    <button class="btn btn-outline remind-btn">
+                                        <i class="fas fa-bell"></i>
+                                        Send Reminder
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History Tab Content -->
+                <div class="tab-content" id="history">
+                    <div class="transaction-list">
+                        <!-- Transaction Item -->
+                        <div class="transaction-item settled">
+                            <div class="transaction-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="transaction-content">
+                                <div class="transaction-header">
+                                    <h3>Paid to John</h3>
+                                    <span class="amount">₹25.00</span>
+                                </div>
+                                <div class="transaction-details">
+                                    <p>Movie Night • Dec 1, 2023</p>
+                                    <span class="status">Settled</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Transaction Item -->
+                        <div class="transaction-item pending">
+                            <div class="transaction-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="transaction-content">
+                                <div class="transaction-header">
+                                    <h3>Received from Sarah</h3>
+                                    <span class="amount">₹15.00</span>
+                                </div>
+                                <div class="transaction-details">
+                                    <p>Lunch • Nov 28, 2023</p>
+                                    <span class="status">Processing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settle Payment Modal -->
+    <div class="modal" id="settleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settle Payment</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-summary">
+                    <h3>Payment Summary</h3>
+                    <div class="summary-item">
+                        <label for="amountInput">Amount to Pay</label>
+                        <input type="number" id="amountInput" placeholder="Enter amount" class="form-control">
+                    </div>
+                    <div class="summary-item">
+                        <span>Processing Fee</span>
+                        <span class="amount" id="feeAmount">₹0.50</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total Amount</span>
+                        <span class="amount" id="totalAmount">₹0.50</span>
+                    </div>
+                    
+                    <div class="summary-item total">
+                        <span>Total Amount</span>
+                        <span class="amount total-settle-amount">₹0.50</span>
+                    </div>
+                </div>
+                <div class="payment-methods">
+                    <h3>Choose Payment Method</h3>
+                    <div class="payment-method-list">
+                        <label class="payment-method">
+                            <input type="radio" name="payment-method" value="card">
+
+                        <label class="payment-method">
+                            <input type="radio" name="payment-method" value="upi">
+                            <div class="method-content">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>UPI</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" id="ProceedtoPayBtn">
+                    <i class="fas fa-money-bill-wave"></i><a href="upi-payment.html">Proceed to Pay</a></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mark as Paid Modal -->
+    <div class="modal" id="markPaidModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Mark as Paid</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Payment Date</label>
+                    <input type="date" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <select class="form-control">
+                        <option value="cash">Cash</option>
+                        <option value="bank">Bank Transfer</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Notes (Optional)</label>
+                    <textarea class="form-control" placeholder="Add any additional notes..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary">Confirm Payment</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/settle.js"></script>
+    <script>
+        document.getElementById('amountInput').addEventListener('input', function () {
+            const amount = parseFloat(this.value) || 0;
+            const fee = 0.50;
+            const total = amount + fee;
+        
+            document.getElementById('feeAmount').innerText = `₹${fee.toFixed(2)}`;
+            document.getElementById('totalAmount').innerText = `₹${total.toFixed(2)}`;
+        });
+        </script>
+        
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SplitWise</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fas fa-wallet"></i>
+            <span>SplitWise</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="active">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="groups.html">
+                <i class="fas fa-users"></i>
+                <span>Groups</span>
+            </a>
+            <a href="activity.html">
+                <i class="fas fa-chart-line"></i>
+                <span>Activity</span>
+            </a>
+            <a href="settle.html">
+                <i class="fas fa-money-bill-wave"></i>
+                <span>Settle Up</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="settings.html">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+            <a href="settings.html" class="user-profile">
+            
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search expenses...">
+            </div>
+            <div class="top-bar-actions">
+                <button class="btn btn-primary" id="addExpenseBtn">
+                    <i class="fas fa-plus"></i> Add Expense
+                </button>
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <div class="welcome-text">
+                    <h1>Welcome ! 👋</h1>
+                    <p>Track your expenses and settle up with friends</p>
+                </div>
+                <div class="date-picker">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-calendar"></i>
+                        This Month <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Overview Cards -->
+            <div class="overview-cards">
+                <div class="card total-expenses">
+                    <div class="card-icon">
+                        <i class="fas fa-receipt"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Total Expenses</h3>
+                        <p class="amount">₹0.00</p>
+                        <span class="trend positive">
+                            <i class="fas fa-arrow-up"></i> 12% from last month
+                        </span>
+                    </div>
+                </div>
+                <div class="card you-owe">
+                    <div class="card-icon red">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>You Owe</h3>
+                        <p class="amount">₹0.00</p>
+                        <span class="trend negative">
+                            <i class="fas fa-arrow-up"></i> 8% from last month
+                        </span>
+                    </div>
+                </div>
+                <div class="card you-are-owed">
+                    <div class="card-icon green">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>You are Owed</h3>
+                        <p class="amount">₹0.00</p>
+                        <span class="trend positive">
+                            <i class="fas fa-arrow-up"></i> 5% from last month
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Expenses -->
+            <div class="recent-expenses">
+                <div class="section-header">
+                    <div class="header-left">
+                        <h2>Recent Expenses</h2>
+                        <span class="expense-count">12 expenses this month</span>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-outline">
+                            <i class="fas fa-filter"></i> Filter
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Expenses List -->
+                <div class="expenses-list">
+                    <!-- Expenses will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Expense Modal -->
+    <div class="modal" id="addExpenseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Expense</h2>
+                <button type="button" class="close-modal" id="closeModalBtn" title="Close">&times;</button>
+            </div>
+            <form id="addExpenseForm" class="stepper-form">
+                <!-- Progress Indicator -->
+                <div class="form-progress">
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Bill Details</div>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Category</div>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Split</div>
+                    </div>
+                </div>
+
+                <!-- Step 1: Bill Details -->
+                <div class="form-step active" data-step="1">
+                    <div class="form-group">
+                        <label for="expenseName">Bill Name</label>
+                        <input type="text" id="expenseName" name="expenseName" 
+                               placeholder="e.g., Dinner at Joe's Cafe" 
+                               maxlength="50" required>
+                        <div class="char-count">0/50</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="amount">Total Amount</label>
+                        <div class="amount-input">
+                            <span class="currency">₹</span>
+                            <input type="number" id="amount" name="amount" 
+                                   placeholder="Enter the total bill amount" 
+                                   step="0.01" min="0.01" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="payer">Who Paid?</label>
+                        <div class="select-wrapper">
+                            <select id="payer" name="payer" required>
+                                <option value="">Select the person who paid</option>
+                                <option value="you">You</option>
+                                <option value="john">Laya</option>
+                                <option value="jane">Sandy</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Split Among Participants</label>
+                        <div class="participants-select">
+                            <div class="participant-checkbox">
+                                <input type="checkbox" id="participant1" name="participants[]" checked>
+                                <label for="participant1">You</label>
+                            </div>
+                            <div class="participant-checkbox">
+                                <input type="checkbox" id="participant2" name="participants[]">
+                                <label for="participant2">Laya</label>
+                            </div>
+                            <div class="participant-checkbox">
+                                <input type="checkbox" id="participant3" name="participants[]">
+                                <label for="participant3">Sandy</label>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-outline btn-sm" id="addParticipantBtn">
+                            <i class="fas fa-plus"></i> Add New Participant
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Category -->
+                <div class="form-step" data-step="2">
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <div class="category-grid">
+                            <div class="category-item">
+                                <input type="radio" name="category" id="cat-food" value="food">
+                                <label for="cat-food">
+                                    <i class="fas fa-utensils"></i>
+                                    <span>Food</span>
+                                </label>
+                            </div>
+                            <div class="category-item">
+                                <input type="radio" name="category" id="cat-travel" value="travel">
+                                <label for="cat-travel">
+                                    <i class="fas fa-plane"></i>
+                                    <span>Travel</span>
+                                </label>
+                            </div>
+                            <div class="category-item">
+                                <input type="radio" name="category" id="cat-utilities" value="utilities">
+                                <label for="cat-utilities">
+                                    <i class="fas fa-bolt"></i>
+                                    <span>Utilities</span>
+                                </label>
+                            </div>
+                            <div class="category-item">
+                                <input type="radio" name="category" id="cat-entertainment" value="entertainment">
+                                <label for="cat-entertainment">
+                                    <i class="fas fa-film"></i>
+                                    <span>Entertainment</span>
+                                </label>
+                            </div>
+                            <div class="category-item">
+                                <input type="radio" name="category" id="cat-shopping" value="shopping">
+                                <label for="cat-shopping">
+                                    <i class="fas fa-shopping-bag"></i>
+                                    <span>Shopping</span>
+                                </label>
+                            </div>
+                            <div class="category-item">
+                                <input type="radio" name="category" id="cat-other" value="other">
+                                <label for="cat-other">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Custom</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div id="customCategoryInput" class="form-group" style="display: none;">
+                            <input type="text" placeholder="Enter custom category name">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Split Options -->
+                <div class="form-step" data-step="3">
+                    <div class="form-group">
+                        <label>How to Split?</label>
+                        <div class="split-options">
+                            <div class="split-option">
+                                <input type="radio" name="splitType" id="split-equal" value="equal" checked>
+                                <label for="split-equal">
+                                    <i class="fas fa-equals"></i>
+                                    <span>Equal Split</span>
+                                </label>
+                            </div>
+                            <div class="split-option">
+                                <input type="radio" name="splitType" id="split-percent" value="percentage">
+                                <label for="split-percent">
+                                    <i class="fas fa-percent"></i>
+                                    <span>By Percentage</span>
+                                </label>
+                            </div>
+                            <div class="split-option">
+                                <input type="radio" name="splitType" id="split-custom" value="custom">
+                                <label for="split-custom">
+                                    <i class="fas fa-sliders-h"></i>
+                                    <span>Custom Amount</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="splitDetails" class="split-details">
+                        <!-- This section will be dynamically populated based on split type -->
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-outline" id="prevStep" style="display: none;">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button type="button" class="btn btn-primary" id="nextStep">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="submitExpense" style="display: none;">
+                        <i class="fas fa-check"></i> Add Expense
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="jsx/settings.jsx"></script>
+</body>
+</html>

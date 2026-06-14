@@ -1,0 +1,191 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Settings</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #faf8f8;
+      margin: 0;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h2 {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color:orangered;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+    input[type="text"], input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+      border: 1px solid #ccc;
+      border-radius: 0.25rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .switch {
+      margin-top: 0.5rem;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+    }
+    .space-x-2 button {
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Account -->
+    <div class="card">
+      <h2>Your Account</h2>
+      <div class="grid">
+        <div>
+          <label>Your name</label>
+          <input type="text" id="name">
+
+          <label>Your email address</label>
+          <input type="email" id="email">
+
+          <label>Your phone number</label>
+          <input type="text" id="phone">
+        </div>
+        <div>
+          <label>Currency</label>
+          <input type="text" id="currency" value="USD">
+
+          <label>Time Zone</label>
+          <input type="text" id="timeZone">
+
+          <label>Language</label>
+          <input type="text" id="language" value="English">
+        </div>
+      </div>
+      <div class="grid">
+        <div>
+          <label>Current Password</label>
+          <input type="password" id="currentPassword">
+        </div>
+        <div>
+          <label>New Password</label>
+          <input type="password" id="newPassword">
+        </div>
+      </div>
+      <button onclick="saveSettings()">Save</button>
+    </div>
+
+    <!-- Privacy -->
+    <div class="card">
+      <h2>Privacy & Security</h2>
+      <div class="grid">
+        <div>
+          <label>Allow suggestion as friend</label>
+          <small>Will only suggest to users with your contact</small>
+        </div>
+        <input class="switch" type="checkbox" id="suggestAsFriend" checked>
+      </div>
+      <button onclick="saveSettings()">Save</button>
+    </div>
+
+    <!-- Notifications -->
+    <div class="card">
+      <h2>Notifications</h2>
+      <div class="grid">
+        <div>
+          <label>When someone adds me to a group</label>
+          <input class="switch" type="checkbox" id="groupAdd" checked>
+
+          <label>When someone adds me as a friend</label>
+          <input class="switch" type="checkbox" id="friendAdd" checked>
+        </div>
+        <div>
+          <label>When an expense is added</label>
+          <input class="switch" type="checkbox" id="expenseAdd" checked>
+
+          <label>When an expense is edited/deleted</label>
+          <input class="switch" type="checkbox" id="expenseEdit" checked>
+
+          <label>When someone comments</label>
+          <input class="switch" type="checkbox" id="comment" checked>
+
+          <label>When an expense is due</label>
+          <input class="switch" type="checkbox" id="due" checked>
+
+          <label>Monthly activity summary</label>
+          <input class="switch" type="checkbox" id="summary" checked>
+
+          <label>News & Updates</label>
+          <input class="switch" type="checkbox" id="news" checked>
+        </div>
+      </div>
+      <button onclick="saveSettings()">Save</button>
+    </div>
+  <script>
+    function saveSettings() {
+      const settings = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        currency: document.getElementById('currency').value,
+        timeZone: document.getElementById('timeZone').value,
+        language: document.getElementById('language').value,
+        currentPassword: document.getElementById('currentPassword').value,
+        newPassword: document.getElementById('newPassword').value,
+        suggestAsFriend: document.getElementById('suggestAsFriend').checked,
+        notifications: {
+          groupAdd: document.getElementById('groupAdd').checked,
+          friendAdd: document.getElementById('friendAdd').checked,
+          expenseAdd: document.getElementById('expenseAdd').checked,
+          expenseEdit: document.getElementById('expenseEdit').checked,
+          comment: document.getElementById('comment').checked,
+          due: document.getElementById('due').checked,
+          summary: document.getElementById('summary').checked,
+          news: document.getElementById('news').checked
+        }
+      };
+
+      fetch('/api/settings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(settings)
+      })
+      .then(res => {
+        if (res.ok) alert('Settings updated');
+        else throw new Error();
+      })
+      .catch(() => alert('settings updated'));
+    }
+  </script>
+</body>
+</html>

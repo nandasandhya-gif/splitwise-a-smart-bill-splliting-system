@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groups | Bill Splitting App</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/groups.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-header">
+                    <img src="images/splitlogo.jpg" alt="Logo" class="logo">
+                    <h1>Split<span>Wise</span></h1>
+                </div>
+                <ul class="nav-links">
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="groups.html">
+                            <i class="fas fa-users"></i>
+                            <span>Groups</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settle.html">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Settle Up</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="activity.html">
+                            <i class="fas fa-receipt"></i>
+                            <span>Activity</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search groups...">
+                </div>
+                <div class="top-bar-right">
+                    <button class="btn btn-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <button class="btn btn-primary" id="createGroupBtn">
+                        <i class="fas fa-plus"></i>
+                        Create Group
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Container -->
+            <div class="main-container">
+                <!-- Overview Section -->
+                <section class="overview-section">
+                    <div class="overview-cards">
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Total Groups</h3>
+                                <p class="amount">0</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon green">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>You're Owed</h3>
+                                <p class="amount">₹0.00</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon purple">
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>You Owe</h3>
+                                <p class="amount">₹0.00</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Groups Section -->
+                <section class="groups-section">
+                    <div class="section-header">
+                        <div class="header-left">
+                            <h2>Your Groups</h2>
+                            <span class="group-count">0 active groups</span>
+                        </div>
+                        <div class="header-actions">
+                            <div class="search-wrapper">
+                                <input type="text" class="search-input" placeholder="Search groups..." id="groupSearch">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <button class="btn btn-outline" id="filterBtn">
+                                <i class="fas fa-filter"></i>
+                                Filter
+                            </button>
+                            <button class="btn btn-outline" id="sortBtn">
+                                <i class="fas fa-sort"></i>
+                                Sort
+                            </button>
+                        </div>
+                    </div>
+                    <div class="groups-list">
+                        <!-- Loading State -->
+                        <div class="loading-state" id="groupsLoading">
+                            <div class="loading-spinner"></div>
+                            <p>Loading your groups...</p>
+                        </div>
+                        
+                        <!-- Empty State -->
+                        <div class="empty-state" id="noGroups" style="display: none;">
+                            <div class="empty-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>No Groups Yet</h3>
+                            <p>Create your first group to start splitting expenses with friends!</p>
+                            <button class="btn btn-primary" onclick="document.getElementById('createGroupBtn').click()">
+                                <i class="fas fa-plus"></i>
+                                Create Group
+                            </button>
+                        </div>
+                        
+                        <!-- Groups Grid -->
+                        <div class="groups-grid" id="groupsGrid" style="display: none;">
+                            <!-- Groups will be added here dynamically -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Archived Groups Section -->
+                <section class="groups-section archived">
+                    <div class="section-header">
+                        <div class="header-left">
+                            <h2>Archived Groups</h2>
+                            <span class="group-count">0 archived groups</span>
+                        </div>
+                    </div>
+                    <div class="groups-list">
+                        <!-- Empty State -->
+                        <div class="empty-state" id="noArchivedGroups">
+                            <div class="empty-icon gray">
+                                <i class="fas fa-archive"></i>
+                            </div>
+                            <h3>No Archived Groups</h3>
+                            <p>Groups you archive will appear here</p>
+                        </div>
+                        
+                        <!-- Groups Grid -->
+                        <div class="groups-grid" id="archivedGroupsGrid" style="display: none;">
+                            <!-- Archived groups will be added here dynamically -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Group Modal -->
+    <div class="modal" id="createGroupModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Group</h2>
+                <button type="button" class="close-modal" id="closeGroupModalBtn" title="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="createGroupForm">
+                    <div class="form-group">
+                        <label for="groupName">Group Name</label>
+                        <input type="text" id="groupName" name="groupName" placeholder="Enter group name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="groupType">Group Type</label>
+                        <select id="groupType" name="groupType" required>
+                            <option value="">Select group type</option>
+                            <option value="home">Home</option>
+                            <option value="trip">Roommates</option>
+                            <option value="couple">Trip</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Add Members</label>
+                        <div class="members-input">
+                            <input type="text" id="memberInput" placeholder="Enter member name">
+                            <button type="button" class="btn btn-outline" id="addMemberBtn">Add</button>
+                        </div>
+                        <div class="added-members">
+                            <!-- Added members will appear here -->
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Create Group</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/groups.js"></script>
+</body>
+</html>
